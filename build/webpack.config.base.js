@@ -18,6 +18,14 @@ const baseConfig = {
     publicPath: !isDev ? utils.publicPath : undefined,
     chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader'
+      }
+    ]
+  }
 }
 
 module.exports = merge(baseConfig, config[utils.appEnv.NODE_ENV])

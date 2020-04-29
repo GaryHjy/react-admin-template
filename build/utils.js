@@ -12,9 +12,11 @@ const publicPath = process.env.PUBLIC_PATH || './'
 
 module.exports = {
   appEnv: process.env,
+  appSrc: resolvePath('src'),
   appIndex: resolvePath('src/index.js'),
   appBuild: resolvePath('dist'),
   appHtml: resolvePath('public/index.html'),
-  proxy: require(resolvePath('config/proxy.config.js')),
+  proxy: resolvePath('config/proxy.config.js'),
+  mockServer: resolvePath('config/mock.js'),
   publicPath
 }

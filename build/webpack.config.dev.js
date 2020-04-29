@@ -20,6 +20,7 @@ module.exports = {
       ignored: ['node_modules'], // 排除监听一些巨大的文件夹
     },
     host, // 指定host
+    hotOnly: true, // 浏览器不自动刷新，就开启hotOnly
     overlay: false, // 全屏显示编译器错误或警告的信息
     progress: true, // 将运行进度输出到控制台
     before: mockServer, // 利用before写mock接口

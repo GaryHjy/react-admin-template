@@ -8,6 +8,7 @@ const host = utils.appEnv.HOST || '0.0.0.0';
 
 module.exports = {
   mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: utils.appBuild,
     compress: true, // 开启gzip压缩

@@ -1,11 +1,16 @@
 const utils = require('./utils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
   devtool: 'none',
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: utils.appHtml,

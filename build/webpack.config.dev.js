@@ -1,16 +1,16 @@
 const webpack = require('webpack');
-const utils = require('./utils');
+const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const proxyConfig = require(utils.proxy);
-const mockServer = require(utils.mockServer);
+const proxyConfig = require(paths.proxy);
+const mockServer = require(paths.mockServer);
 
-const host = utils.appEnv.HOST || '0.0.0.0';
+const host = paths.appEnv.HOST || '0.0.0.0';
 
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: utils.appBuild,
+    contentBase: paths.appBuild,
     compress: true, // 开启gzip压缩
     hot: true, // 开启热替换
     watchContentBase: true, // 文件修改之后，会触发一次完整的页面重载
@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // 开启HMR
     new HtmlWebpackPlugin({
-      template: utils.appHtml,
+      template: paths.appHtml,
       inject: true, // js插入的位置
     })
   ]

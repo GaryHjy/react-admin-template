@@ -1,4 +1,4 @@
-const utils = require('./utils');
+const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -13,7 +13,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: utils.appHtml,
+      template: paths.appHtml,
       inject: true, // js插入的位置
       minify: {
         collapseWhitespace: true, // 折叠构成文档树中的文本节点的空白

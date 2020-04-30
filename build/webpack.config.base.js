@@ -26,52 +26,79 @@ const baseConfig = {
   },
   module: {
     rules: [
+      { parser: { requireEnsure: false } },  // 禁用 require.ensure
       {
-        test: /\.(js|jsx)$/,
-        loader: require.resolve('babel-loader')
-      },
-      {
-        test: cssRegex,
-        exclude: cssModuleRegex,
-        use: getStyleLoaders({
-          importLoaders: 1, // 在一个css中引入了另一个css也会执行之前两个loader
-          sourceMap: !isDev,
-        }),
-        sideEffects: true,
-      },
-      {
-        test: cssModuleRegex,
-        use: getStyleLoaders({
-          importLoaders: 1,
-          modules: {
-            getLocalIdent: getCSSModuleLocalIdent
-          }
-        })
-      },
-      {
-        test: lessRegex,
-        exclude: lessModuleRegex,
-        use: getStyleLoaders(
+        // 数组，当规则匹配时，只使用第一个匹配规则。
+        oneOf: [
           {
-            importLoaders: 2,
-            sourceMap: !isDev,
+            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: '10000',
+              name: 'static/media/[name].[hash:8].[ext]',
+            },
           },
-          'less-loader'
-        ),
-        sideEffects: true
-      },
-      {
-        test: lessModuleRegex,
-        use: getStyleLoaders(
           {
-            importLoaders: 2,
-            modules: {
-              getLocalIdent: getCSSModuleLocalIdent
+            test: /\.(js|jsx)$/,
+            include: paths.appSrc,
+            loader: require.resolve('babel-loader'),
+            options: {
+              cacheDirectory: true,
+              cacheCompression: false,
+              compact: !isDev,
             }
           },
-          'less-loader'
-        )
-      },
+          {
+            test: cssRegex,
+            exclude: cssModuleRegex,
+            use: getStyleLoaders({
+              importLoaders: 1, // 在一个css中引入了另一个css也会执行之前两个loader
+              sourceMap: !isDev,
+            }),
+            sideEffects: true,
+          },
+          {
+            test: cssModuleRegex,
+            use: getStyleLoaders({
+              importLoaders: 1,
+              modules: {
+                getLocalIdent: getCSSModuleLocalIdent
+              }
+            })
+          },
+          {
+            test: lessRegex,
+            exclude: lessModuleRegex,
+            use: getStyleLoaders(
+              {
+                importLoaders: 2,
+                sourceMap: !isDev,
+              },
+              'less-loader'
+            ),
+            sideEffects: true
+          },
+          {
+            test: lessModuleRegex,
+            use: getStyleLoaders(
+              {
+                importLoaders: 2,
+                modules: {
+                  getLocalIdent: getCSSModuleLocalIdent
+                }
+              },
+              'less-loader'
+            )
+          },
+          {
+            loader: require.resolve('file-loader'),
+            exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+            options: {
+              name: 'static/media/[name].[hash:8].[ext]',
+            },
+          }
+        ]
+      }
     ]
   }
 }

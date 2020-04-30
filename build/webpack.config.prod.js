@@ -2,6 +2,7 @@ const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: 'production',
@@ -27,6 +28,7 @@ module.exports = {
         minifyCSS: true,// 压缩js
         minifyURLs: true,
       }
-    })
-  ]
+    }),
+    process.env.npm_config_report && new BundleAnalyzerPlugin()
+  ].filter(Boolean)
 }

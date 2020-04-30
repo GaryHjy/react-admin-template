@@ -1,16 +1,9 @@
-const fs = require('fs');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-require('dotenv').config();
-
-['NODE_ENV', 'API_SERVER', 'PUBLIC_PATH'].forEach(key => {
-  console.log('\n%s\t: %s\n', key, process.env[key])
-})
-
-const appDirectory = fs.realpathSync(process.cwd());
-const resolvePath = relativePath => path.resolve(appDirectory, relativePath);
-const publicPath = process.env.PUBLIC_PATH || './'
-const isDev = process.env.NODE_ENV === 'development';
+const loaderUtils = require('loader-utils');
+const paths = require('./paths');
+const isDev = paths.appEnv.NODE_ENV === 'development';
+const publicPath  = paths.publicPath;
 
 /**
  * @description 获取styleLoader配置
@@ -50,14 +43,32 @@ const getStyleLoaders = function (cssOptions, preProcessor) {
   return loaders;
 }
 
+/**
+ * @description css模块化命名规则
+ */
+const getCSSModuleLocalIdent = function (context, localIdentName, localName, options) {
+  // 获取文件所在的文件夹名
+  const fileNameOrFolder = context.resourcePath.match(
+    /index\.module\.(css|less)$/
+  )
+    ? '[folder]'
+    : '[name]';
+  
+  const hash = loaderUtils.getHashDigest(
+    path.posix.relative(context.rootContext, context.resourcePath) + localName,
+    'md5',
+    'base64',
+    5
+  );
+  const className = loaderUtils.interpolateName(
+    context,
+    fileNameOrFolder + '_' + localName + '__' + hash,
+    options
+  );
+  return className.replace('.module_', '_');
+}
+
 module.exports = {
-  appEnv: process.env,
-  appSrc: resolvePath('src'),
-  appIndex: resolvePath('src/index.js'),
-  appBuild: resolvePath('dist'),
-  appHtml: resolvePath('public/index.html'),
-  proxy: resolvePath('config/proxy.config.js'),
-  mockServer: resolvePath('config/mock.js'),
-  publicPath,
-  getStyleLoaders
+  getStyleLoaders,
+  getCSSModuleLocalIdent
 }

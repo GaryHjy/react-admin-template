@@ -29,8 +29,7 @@ const baseConfig = {
     extensions: ['.js', '.jsx', '.json', '.css', '.less'],
     // 配置模块别名或目录别名    
     alias: {
-      src: paths.appSrc,
-      components: paths.appComponents
+      '@': paths.appSrc
     }
   },
   module: {
@@ -40,11 +39,11 @@ const baseConfig = {
         // 数组，当规则匹配时，只使用第一个匹配规则。
         oneOf: [
           {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            test: [/\.(bmp|gif|jpe?g|png)$/],
             loader: require.resolve('url-loader'),
             options: {
-              limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
+              limit: 10240, // 10kb = 10 * 1024BYTE
+              name: 'static/assets/[name].[hash:8].[ext]',
             },
           },
           // 处理字体文件
@@ -52,7 +51,7 @@ const baseConfig = {
             test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
             loader: require.resolve('url-loader'),
             options: {
-              limit: 10000,
+              limit: 10240,
               name: 'static/assets/fonts/[name].[hash:8].[ext]'
             }
           },

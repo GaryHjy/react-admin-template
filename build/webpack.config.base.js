@@ -43,9 +43,18 @@ const baseConfig = {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
             loader: require.resolve('url-loader'),
             options: {
-              limit: '10000',
+              limit: 10000,
               name: 'static/media/[name].[hash:8].[ext]',
             },
+          },
+          // 处理字体文件
+          {
+            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: 10000,
+              name: 'static/assets/fonts/[name].[hash:8].[ext]'
+            }
           },
           {
             test: /\.(js|jsx)$/,

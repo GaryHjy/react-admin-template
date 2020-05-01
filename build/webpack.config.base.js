@@ -24,6 +24,10 @@ const baseConfig = {
     publicPath: !isDev ? paths.publicPath : undefined,
     chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
+  resolve: {
+    // 配置模块扩展名
+    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
+  },
   module: {
     rules: [
       { parser: { requireEnsure: false } },  // 禁用 require.ensure

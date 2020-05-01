@@ -27,6 +27,11 @@ const baseConfig = {
   resolve: {
     // 配置模块扩展名
     extensions: ['.js', '.jsx', '.json', '.css', '.less'],
+    // 配置模块别名或目录别名    
+    alias: {
+      src: paths.appSrc,
+      components: paths.appComponents
+    }
   },
   module: {
     rules: [

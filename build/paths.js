@@ -13,6 +13,7 @@ const publicPath = process.env.PUBLIC_PATH || './'
 module.exports = {
   appEnv: process.env,
   appSrc: resolvePath('src'),
+  appComponents: resolvePath('src/components'),
   appIndex: resolvePath('src/index.js'),
   appBuild: resolvePath('dist'),
   appHtml: resolvePath('public/index.html'),

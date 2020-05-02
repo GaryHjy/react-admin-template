@@ -29,6 +29,10 @@ module.exports = {
         minifyURLs: true,
       }
     }),
-    process.env.npm_config_report && new BundleAnalyzerPlugin()
+    process.env.npm_config_report && new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: true,
+      logLevel: 'info'
+    })
   ].filter(Boolean)
 }

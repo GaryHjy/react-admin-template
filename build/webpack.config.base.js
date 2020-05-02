@@ -3,6 +3,7 @@ const paths = require('./paths');
 const { getStyleLoaders, getCSSModuleLocalIdent} = require('./utils');
 const devConfig = require('./webpack.config.dev');
 const prodConfig = require('./webpack.config.prod');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
   'development': devConfig,
@@ -117,7 +118,15 @@ const baseConfig = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    // 拷贝public下文件,除了.html文件
+    new CopyWebpackPlugin([{
+      from: paths.appPublic,
+      to: paths.appBuild,
+      ignore: ['*.html']
+    }])
+  ]
 }
 
 module.exports = merge(baseConfig, config[paths.appEnv.NODE_ENV])

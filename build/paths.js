@@ -17,6 +17,7 @@ module.exports = {
   appIndex: resolvePath('src/index.js'),
   appBuild: resolvePath('dist'),
   appHtml: resolvePath('public/index.html'),
+  appPublic: resolvePath('public'),
   proxy: resolvePath('config/proxy.config.js'),
   mockServer: resolvePath('config/mock.js'),
   publicPath

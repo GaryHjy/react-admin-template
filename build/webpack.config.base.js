@@ -10,7 +10,7 @@ const HappyPack = require('happypack');
 
 
 // 进程数由CPU核数决定
-const happThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const config = {
   'development': devConfig,
@@ -67,7 +67,10 @@ const baseConfig = {
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
-            loader: 'happypack/loader?id=jsx',
+            loader: 'happypack/loader',
+            options: {
+              cacheDirectory: true,
+            }
           },
           {
             test: cssRegex,
@@ -129,17 +132,12 @@ const baseConfig = {
       to: paths.appBuild,
       ignore: ['*.html']
     }]),
+    // js多进程构建
     new HappyPack({
-      id: 'jsx',
-      threadPool: happThreadPool,
+      threadPool: happyThreadPool,
       loaders: [{
         loader: 'babel-loader',
-        options: {
-          cacheDirectory: true,
-          cacheCompression: false,
-          compact: !isDev,
-        }
-      }]
+      }],
     })
   ],
   optimization: {
@@ -168,8 +166,8 @@ const baseConfig = {
           },
         },
         sourceMap: !isDev,
-        parallel: 4,
-        cache: true
+        parallel: 4, // 开启多进程打包
+        cache: true // 缓存
       }),
     ],
     splitChunks: {

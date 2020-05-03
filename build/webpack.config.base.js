@@ -1,9 +1,16 @@
+const os = require('os');
 const merge = require('webpack-merge');
 const paths = require('./paths');
 const { getStyleLoaders, getCSSModuleLocalIdent} = require('./utils');
 const devConfig = require('./webpack.config.dev');
 const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const HappyPack = require('happypack');
+
+
+// 进程数由CPU核数决定
+const happThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const config = {
   'development': devConfig,
@@ -26,6 +33,7 @@ const baseConfig = {
     chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
   resolve: {
+    modules: ['node_modules', paths.appNodeModules],
     // 配置模块扩展名
     extensions: ['.js', '.jsx', '.json', '.css', '.less'],
     // 配置模块别名或目录别名    
@@ -59,12 +67,7 @@ const baseConfig = {
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
-            loader: require.resolve('babel-loader'),
-            options: {
-              cacheDirectory: true,
-              cacheCompression: false,
-              compact: !isDev,
-            }
+            loader: 'happypack/loader?id=jsx',
           },
           {
             test: cssRegex,
@@ -126,9 +129,49 @@ const baseConfig = {
       to: paths.appBuild,
       ignore: ['*.html']
     }]),
-    
+    new HappyPack({
+      id: 'jsx',
+      threadPool: happThreadPool,
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          cacheCompression: false,
+          compact: !isDev,
+        }
+      }]
+    })
   ],
   optimization: {
+    minimize: !isDev,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2,
+          },
+          mangle: {
+            safari10: true,
+          },
+          keep_classnames: process.env.npm_config_report,
+          keep_fnames: process.env.npm_config_report,
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        sourceMap: !isDev,
+        parallel: 4,
+        cache: true
+      }),
+    ],
     splitChunks: {
       cacheGroups: {
         styles: {

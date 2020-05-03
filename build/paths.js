@@ -20,5 +20,6 @@ module.exports = {
   appPublic: resolvePath('public'),
   proxy: resolvePath('config/proxy.config.js'),
   mockServer: resolvePath('config/mock.js'),
+  appNodeModules: resolvePath('node_modules'),
   publicPath
 }

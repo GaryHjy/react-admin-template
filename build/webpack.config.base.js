@@ -174,11 +174,32 @@ const baseConfig = {
       chunks: 'all',
       name: false,
       cacheGroups: {
+        vendor: {
+          chunks: "all",
+          test: /node_modules/,
+          name: "vendor",
+          minChunks: 1, // 最小公用次数
+          maxInitialRequests: 5,
+          minSize: 0, //表示在压缩前的最小模块大小,默认值是 30kb
+          priority: 100, // 优先级
+        },
+        common: {
+          chunks: "all",
+          test: /[\\/]src[\\/]js[\\/]/,
+          name: "common",
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 60
+        },
         styles: {
           name: 'styles',
           test: /\.(le|c)ss$/,
           chunks: 'all',
           enforce: true
+        },
+        runtimeChunk: {
+          name: 'runtime'
         }
       }
     }

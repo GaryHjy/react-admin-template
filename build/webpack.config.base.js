@@ -171,6 +171,8 @@ const baseConfig = {
       }),
     ],
     splitChunks: {
+      chunks: 'all',
+      name: false,
       cacheGroups: {
         styles: {
           name: 'styles',

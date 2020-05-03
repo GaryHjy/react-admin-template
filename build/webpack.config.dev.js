@@ -31,6 +31,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: paths.appHtml,
       inject: true, // js插入的位置
-    })
+    }),
+    // 开启 Scope Hoisting
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 }

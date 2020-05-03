@@ -19,3 +19,6 @@ dist
 sw.*
 
 package-lock.json
+
+# vscode 
+.vscode

@@ -7,6 +7,7 @@ const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 
 // 进程数由CPU核数决定
@@ -138,7 +139,8 @@ const baseConfig = {
       loaders: [{
         loader: 'babel-loader',
       }],
-    })
+    }),
+    new HardSourceWebpackPlugin()
   ],
   optimization: {
     minimize: !isDev,

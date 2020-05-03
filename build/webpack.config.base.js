@@ -125,8 +125,21 @@ const baseConfig = {
       from: paths.appPublic,
       to: paths.appBuild,
       ignore: ['*.html']
-    }])
-  ]
+    }]),
+    
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.(le|c)ss$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
+  }
 }
 
 module.exports = merge(baseConfig, config[paths.appEnv.NODE_ENV])

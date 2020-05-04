@@ -21,6 +21,7 @@ module.exports = {
     fetch: true,
     URL: true
   },
+  extends: ["airbnb", "plugin:prettier/recommended"],
   rules: {
     'no-console': 'off',
     'no-alert': 0, //禁止使用alert confirm prompt

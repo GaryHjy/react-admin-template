@@ -4,7 +4,7 @@
   "description": "react-admin-template",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --colors --profile --config build/webpack.config.base.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.base.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.base.js",
     "analyze": "cross-env NODE_ENV=production npm_config_report=true npm run build"
   },
@@ -61,7 +61,8 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-manifest-plugin": "^2.2.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpackbar": "^4.0.0"
   },
   "dependencies": {
     "core-js": "^3.6.5",

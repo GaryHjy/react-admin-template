@@ -9,6 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackBar = require('webpackbar');
 
 // 进程数由CPU核数决定
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -157,7 +158,30 @@ const baseConfig = {
       }],
     }),
     // 加速编译
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin({
+      info: {
+        level: 'warn'
+      },
+    }),
+    new WebpackBar({
+      name: isDev ? 'webpack-Dev-Server' : 'build',
+      color: 'blue',
+      profile: false,
+      reporters: [
+        'basic',
+        'fancy',
+        'profile',
+        'stats'
+      ],
+      stats: !isDev, // 打包信息prod时显示
+      reporter: {
+        change: (_, { shortPath }) => {
+          if (isDev) {
+            console.log('bundler:change', shortPath)
+          }
+        }
+      }
+    })
   ],
   optimization: {
     minimize: !isDev,
@@ -222,7 +246,12 @@ const baseConfig = {
         }
       }
     }
-  }
+  },
+  stats: 'errors-only',
+  performance: {
+    maxEntrypointSize: 1000 * 1024,
+    hints: isDev ? false : 'warning'
+  },
 }
 
 module.exports = merge(baseConfig, config[paths.appEnv.NODE_ENV])

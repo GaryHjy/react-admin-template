@@ -4006,6 +4006,11 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
+git-cz@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.npm.taobao.org/git-cz/download/git-cz-4.3.1.tgz#1a1a462c2730c17c9fcbfa023beee98fd7659934"
+  integrity sha1-GhpGLCcwwXyfy/oCO+7pj9dlmTQ=
+
 git-raw-commits@^2.0.0:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/git-raw-commits/download/git-raw-commits-2.0.3.tgz#f040e67b8445962d4d168903a9e84c4240c17655"

@@ -1,7 +1,7 @@
 const os = require('os');
 const merge = require('webpack-merge');
 const paths = require('./paths');
-const { getStyleLoaders, getCSSModuleLocalIdent} = require('./utils');
+const { getStyleLoaders, getCSSModuleLocalIdent } = require('./utils');
 const devConfig = require('./webpack.config.dev');
 const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -35,9 +35,9 @@ const baseConfig = {
     chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
   resolve: {
-    modules: ['node_modules', paths.appNodeModules],
+    modules: [ 'node_modules', paths.appNodeModules ],
     // 配置模块扩展名
-    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
+    extensions: [ '.js', '.jsx', '.json', '.css', '.less' ],
     // 配置模块别名或目录别名    
     alias: {
       '@': paths.appSrc
@@ -50,7 +50,7 @@ const baseConfig = {
         // 数组，当规则匹配时，只使用第一个匹配规则。
         oneOf: [
           {
-            test: [/\.(bmp|gif|jpe?g|png)$/],
+            test: [ /\.(bmp|gif|jpe?g|png)$/ ],
             loader: require.resolve('url-loader'),
             options: {
               limit: 10240, // 10kb = 10 * 1024BYTE
@@ -69,16 +69,16 @@ const baseConfig = {
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
-            loader: 'happypack/loader?id=jsx',
+            loader: 'happypack/loader?id=jsx'
           },
           {
             test: cssRegex,
             exclude: cssModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1, // 在一个css中引入了另一个css也会执行之前两个loader
-              sourceMap: !isDev,
+              sourceMap: !isDev
             }),
-            sideEffects: true,
+            sideEffects: true
           },
           {
             test: cssModuleRegex,
@@ -251,7 +251,7 @@ const baseConfig = {
   performance: {
     maxEntrypointSize: 1000 * 1024,
     hints: isDev ? false : 'warning'
-  },
+  }
 }
 
 module.exports = merge(baseConfig, config[paths.appEnv.NODE_ENV])

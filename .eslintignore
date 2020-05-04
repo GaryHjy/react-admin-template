@@ -1,0 +1,7 @@
+node_modules/
+*.html
+dist/
+build/
+config/
+package.json
+sw.*

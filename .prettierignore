@@ -1,0 +1,7 @@
+**/*.md
+**/*.svg
+**/*.html
+build/**
+config/**
+package.json
+dist/**

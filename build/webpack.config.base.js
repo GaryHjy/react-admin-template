@@ -47,6 +47,13 @@ const baseConfig = {
     rules: [
       { parser: { requireEnsure: false } },  // 禁用 require.ensure
       {
+        test: /\.jsx?$/,
+        loader: require.resolve('eslint-loader'),
+        enforce: "pre",
+        include: [paths.appSrc], // 指定检查的目录
+        options: { fix: true } // 这里的配置项参数将会被传递到 eslint 的 CLIEngine   
+      },
+      {
         // 数组，当规则匹配时，只使用第一个匹配规则。
         oneOf: [
           {

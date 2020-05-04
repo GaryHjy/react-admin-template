@@ -68,10 +68,7 @@ const baseConfig = {
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
-            loader: 'happypack/loader',
-            options: {
-              cacheDirectory: true,
-            }
+            loader: 'happypack/loader?id=jsx',
           },
           {
             test: cssRegex,
@@ -135,9 +132,10 @@ const baseConfig = {
     }]),
     // js多进程构建
     new HappyPack({
+      id: 'jsx',
       threadPool: happyThreadPool,
       loaders: [{
-        loader: 'babel-loader',
+        loader: 'babel-loader?cacheDirectory=true',
       }],
     }),
     new HardSourceWebpackPlugin()

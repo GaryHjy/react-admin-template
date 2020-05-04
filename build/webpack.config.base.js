@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 // 进程数由CPU核数决定
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -130,6 +130,24 @@ const baseConfig = {
       to: paths.appBuild,
       ignore: ['*.html']
     }]),
+    // 生成编译结果的资源单
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+      publicPath: paths.appPublic,
+      generate: (seed, files, entrypoints) => {
+        const manifestFiles = files.reduce((manifest, file) => {
+          manifest[file.name] = file.path;
+          return manifest;
+        }, seed);
+        const entrypointFiles = entrypoints.main.filter(
+          fileName => !fileName.endsWith('.map')
+        );
+        return {
+          files: manifestFiles,
+          entrypoints: entrypointFiles,
+        };
+      },
+    }),
     // js多进程构建
     new HappyPack({
       id: 'jsx',
@@ -138,6 +156,7 @@ const baseConfig = {
         loader: 'babel-loader?cacheDirectory=true',
       }],
     }),
+    // 加速编译
     new HardSourceWebpackPlugin()
   ],
   optimization: {

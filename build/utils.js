@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const loaderUtils = require('loader-utils');
 const paths = require('./paths');
 const isDev = paths.appEnv.NODE_ENV === 'development';
-const publicPath  = paths.publicPath;
+const publicPath = paths.publicPath;
 
 /**
  * @description 获取styleLoader配置
@@ -36,6 +36,7 @@ const getStyleLoaders = function (cssOptions, preProcessor) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: true,
+          // javascriptEnabled: true
         },
       }
     );
@@ -53,7 +54,7 @@ const getCSSModuleLocalIdent = function (context, localIdentName, localName, opt
   )
     ? '[folder]'
     : '[name]';
-  
+
   const hash = loaderUtils.getHashDigest(
     path.posix.relative(context.rootContext, context.resourcePath) + localName,
     'md5',

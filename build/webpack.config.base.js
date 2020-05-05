@@ -139,6 +139,16 @@ const baseConfig = {
       to: paths.appBuild,
       ignore: ['*.html']
     }]),
+    // 过滤moment中的locale文件，避免打包进去
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // js多进程构建
+    new HappyPack({
+      id: 'jsx',
+      threadPool: happyThreadPool,
+      loaders: [{
+        loader: 'babel-loader?cacheDirectory=true',
+      }],
+    }),
     // 生成编译结果的资源单
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
@@ -156,16 +166,6 @@ const baseConfig = {
           entrypoints: entrypointFiles,
         };
       },
-    }),
-    // 过滤moment中的locale文件，避免打包进去
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // js多进程构建
-    new HappyPack({
-      id: 'jsx',
-      threadPool: happyThreadPool,
-      loaders: [{
-        loader: 'babel-loader?cacheDirectory=true',
-      }],
     }),
     // 加速编译
     new HardSourceWebpackPlugin({

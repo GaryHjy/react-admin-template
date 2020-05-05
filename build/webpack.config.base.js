@@ -35,9 +35,9 @@ const baseConfig = {
     chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
   resolve: {
-    modules: [ 'node_modules', paths.appNodeModules ],
+    modules: ['node_modules', paths.appNodeModules],
     // 配置模块扩展名
-    extensions: [ '.js', '.jsx', '.json', '.css', '.less' ],
+    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
     // 配置模块别名或目录别名    
     alias: {
       '@': paths.appSrc
@@ -57,7 +57,7 @@ const baseConfig = {
         // 数组，当规则匹配时，只使用第一个匹配规则。
         oneOf: [
           {
-            test: [ /\.(bmp|gif|jpe?g|png)$/ ],
+            test: [/\.(bmp|gif|jpe?g|png)$/],
             loader: require.resolve('url-loader'),
             options: {
               limit: 10240, // 10kb = 10 * 1024BYTE

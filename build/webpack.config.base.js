@@ -170,6 +170,7 @@ const baseConfig = {
         level: 'warn'
       },
     }),
+    // 进度条
     new WebpackBar({
       name: isDev ? 'webpack-Dev-Server' : 'build',
       color: 'blue',

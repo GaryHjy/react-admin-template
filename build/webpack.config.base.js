@@ -156,6 +156,8 @@ const baseConfig = {
         };
       },
     }),
+    // 过滤moment中的locale文件，避免打包进去
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // js多进程构建
     new HappyPack({
       id: 'jsx',

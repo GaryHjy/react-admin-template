@@ -17,6 +17,4 @@ class LoadingComponent extends Component {
   }
 }
 
-export default (loader, loading = LoadingComponent) => {
-  return loadable({ loader, loading });
-};
+export default (loader, loading = LoadingComponent) => loadable({ loader, loading });

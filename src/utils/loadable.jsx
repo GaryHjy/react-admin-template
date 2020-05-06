@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import loadable from 'react-loadable';
 import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
 
 class LoadingComponent extends Component {
   constructor(props) {

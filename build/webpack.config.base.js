@@ -168,7 +168,7 @@ const baseConfig = {
       },
     }),
     // 加速编译
-    new HardSourceWebpackPlugin({
+   new HardSourceWebpackPlugin({
       info: {
         level: 'warn'
       },

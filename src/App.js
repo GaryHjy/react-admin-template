@@ -17,7 +17,7 @@ class App extends React.Component {
                 exact={item.exact}
                 render={() => (
                   <Layout>
-                    <item.Component />
+                    <item.component />
                   </Layout>
                 )}
               />

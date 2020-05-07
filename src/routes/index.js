@@ -4,6 +4,6 @@ export default [
   {
     path: '/',
     exact: true,
-    Component: loadable(() => import(/* webpackChunkName: 'index' */ '@/views/Index')),
+    component: loadable(() => import(/* webpackChunkName: 'index' */ '@/views/Index')),
   },
 ];

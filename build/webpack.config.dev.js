@@ -17,12 +17,12 @@ module.exports = {
     publicPath: '/', // 上下文path
     quiet: false, // 初始启动信息之外的任何内容都不会被打印到控制台, webpack的错误或警告在控制台不可见
     watchOptions: {
-      ignored: ['node_modules'], // 排除监听一些巨大的文件夹
+      ignored: [paths.appNodeModules], // 排除监听一些巨大的文件夹
     },
     host, // 指定host
     hotOnly: true, // 浏览器不自动刷新，就开启hotOnly
     overlay: true, // 全屏显示编译器错误或警告的信息
-    progress: true, // 将运行进度输出到控制台
+    progress: false, // 将运行进度输出到控制台
     before: mockServer, // 利用before写mock接口
     proxy: proxyConfig, // 代理配置
   },

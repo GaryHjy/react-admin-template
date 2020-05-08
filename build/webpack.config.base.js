@@ -10,7 +10,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const glob = require('glob');
 
 // 进程数由CPU核数决定
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -143,6 +145,9 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new PurgecssPlugin({
+      paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
+    }),
     // js多进程构建
     new HappyPack({
       id: 'jsx',

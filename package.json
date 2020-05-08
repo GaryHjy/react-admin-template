@@ -82,6 +82,7 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "antd": "^4.2.0",

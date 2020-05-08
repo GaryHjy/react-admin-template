@@ -35,7 +35,6 @@ const baseConfig = {
     filename: isDev ? 'static/js/bundle.js' : 'static/js/[name].[chunkhash:8].js',
     path: paths.appBuild,
     publicPath: !isDev ? paths.publicPath : undefined,
-    chunkFilename: isDev ? 'static/js/[name].chunk.js' : 'static/js/[name].[contenthash:8].chunk.js'
   },
   resolve: {
     modules: ['node_modules', paths.appNodeModules],
@@ -148,9 +147,9 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new PurgecssPlugin({
-      paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
-    }),
+    // new PurgecssPlugin({
+    //   paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
+    // }),
     // js多进程构建
     new HappyPack({
       id: 'jsx',

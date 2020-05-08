@@ -1033,14 +1033,6 @@
   resolved "https://registry.npm.taobao.org/@csstools/convert-colors/download/@csstools/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha1-rUldxBsS511YjG24uYNPCPoTHrc=
 
-"@fullhuman/postcss-purgecss@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.npm.taobao.org/@fullhuman/postcss-purgecss/download/@fullhuman/postcss-purgecss-2.1.2.tgz#8fe4d4ae2b58214b5452cb490a31c7146517442f"
-  integrity sha1-j+TUritYIUtUUstJCjHHFGUXRC8=
-  dependencies:
-    postcss "7.0.27"
-    purgecss "^2.1.2"
-
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
   resolved "https://registry.npm.taobao.org/@marionebl/sander/download/@marionebl/sander-0.6.1.tgz#1958965874f24bc51be48875feb50d642fc41f7b"
@@ -7357,16 +7349,7 @@ postcss-values-parser@^2.0.0, postcss-values-parser@^2.0.1:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss@7.0.27:
-  version "7.0.27"
-  resolved "https://registry.npm.taobao.org/postcss/download/postcss-7.0.27.tgz#cc67cdc6b0daa375105b7c424a85567345fc54d9"
-  integrity sha1-zGfNxrDao3UQW3xCSoVWc0X8VNk=
-  dependencies:
-    chalk "^2.4.2"
-    source-map "^0.6.1"
-    supports-color "^6.1.0"
-
-postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
+postcss@7.0.28, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
   version "7.0.28"
   resolved "https://registry.npm.taobao.org/postcss/download/postcss-7.0.28.tgz#d349ced7743475717ba91f6810efb58c51fb5dbb"
   integrity sha1-00nO13Q0dXF7qR9oEO+1jFH7Xbs=
@@ -7521,14 +7504,23 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
-purgecss@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npm.taobao.org/purgecss/download/purgecss-2.1.2.tgz#96f666d04c56705208aaa1a544b5f22e13828955"
-  integrity sha1-lvZm0ExWcFIIqqGlRLXyLhOCiVU=
+purgecss-webpack-plugin@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/purgecss-webpack-plugin/download/purgecss-webpack-plugin-2.2.0.tgz#5fec1bfd497edbe9217bd6a58e8a16d4050832d6"
+  integrity sha1-X+wb/Ul+2+khe9aljooW1AUIMtY=
+  dependencies:
+    purgecss "^2.2.0"
+    webpack "^4.42.1"
+    webpack-sources "^1.4.3"
+
+purgecss@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.npm.taobao.org/purgecss/download/purgecss-2.2.1.tgz#aa3bdf23370f7539df6154f5e25df2da311cd018"
+  integrity sha1-qjvfIzcPdTnfYVT14l3y2jEc0Bg=
   dependencies:
     commander "^5.0.0"
     glob "^7.0.0"
-    postcss "7.0.27"
+    postcss "7.0.28"
     postcss-selector-parser "^6.0.2"
 
 q@^1.1.2, q@^1.5.1:
@@ -9757,7 +9749,7 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.43.0:
+webpack@^4.42.1, webpack@^4.43.0:
   version "4.43.0"
   resolved "https://registry.npm.taobao.org/webpack/download/webpack-4.43.0.tgz#c48547b11d563224c561dad1172c8aa0b8a678e6"
   integrity sha1-xIVHsR1WMiTFYdrRFyyKoLimeOY=

@@ -51,8 +51,8 @@ const baseConfig = {
         test: /\.jsx?$/,
         loader: require.resolve('eslint-loader'),
         enforce: "pre",
-        include: [paths.appSrc], // 指定检查的目录
-        options: { fix: true } // 这里的配置项参数将会被传递到 eslint 的 CLIEngine   
+        include: [paths.appSrc], // 指定检查的目录 
+        exclude: paths.appNodeModules,
       },
       {
         // 数组，当规则匹配时，只使用第一个匹配规则。
@@ -77,6 +77,7 @@ const baseConfig = {
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
+            exclude: paths.appNodeModules,
             loader: 'happypack/loader?id=jsx'
           },
           {

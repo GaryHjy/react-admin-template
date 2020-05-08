@@ -182,7 +182,7 @@ const baseConfig = {
     }),
     // 进度条
     new WebpackBar({
-      name: isDev ? 'webpack-Dev-Server' : 'build',
+      name: isDev ? 'client' : 'build',
       color: 'blue',
       profile: false,
       reporters: [

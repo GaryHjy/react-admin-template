@@ -99,6 +99,7 @@ const baseConfig = {
           },
           {
             test: lessRegex,
+            include: [paths.appSrc],
             exclude: lessModuleRegex,
             use: getStyleLoaders(
               {

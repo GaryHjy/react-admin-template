@@ -67,6 +67,8 @@ module.exports = {
     "react/prefer-stateless-function": ["off"], // 提示使用function函数组件
     "react/jsx-wrap-multilines": ["off"],
     // "react/jsx-max-props-per-line": [1, { "maximum": 3 }], // 限制JSX中单行上的props的最大数量
+    "react/jsx-props-no-spreading": ["off"],
+    "react/destructuring-assignment": ["off"],
     "react/jsx-no-bind": 0, //JSX中不允许使用箭头函数和bind
     "react/jsx-no-duplicate-props": 2, //防止在JSX中重复的props
     "react/jsx-no-literals": 0, //防止使用未包装的JSX字符串

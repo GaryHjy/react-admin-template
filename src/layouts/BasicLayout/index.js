@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '@/styles/layout-styles/basic-layout.less';
 import { Layout, Menu } from 'antd';
 import {
@@ -17,6 +18,7 @@ class DefaultLayout extends Component {
     this.state = {
       collapsed: false,
     };
+    console.log(this);
   }
 
   toggle = () => {
@@ -67,4 +69,6 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps)(DefaultLayout);

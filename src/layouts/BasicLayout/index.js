@@ -9,28 +9,25 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
+import settingActions from '@/store/actions/setting';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 class DefaultLayout extends Component {
-  constructor() {
-    super();
-    this.state = {
-      collapsed: false,
-    };
-    console.log(this);
-  }
-
   toggle = () => {
-    const { collapsed } = this.state;
-    this.setState({
-      collapsed: !collapsed,
-    });
+    const { collapsed } = this.props.setting;
+    this.props.changeMenuCollapsed(!collapsed);
+  };
+
+  triggerIcon = () => {
+    const { collapsed } = this.props.setting;
+    const Comp = collapsed ? MenuUnfoldOutlined : MenuFoldOutlined;
+    return <Comp onClick={this.toggle} />;
   };
 
   render() {
-    const { children } = this.props;
-    const { collapsed } = this.state;
+    const { children, setting } = this.props;
+    const { collapsed } = setting;
     return (
       <>
         <Layout className="basic-layout">
@@ -52,12 +49,7 @@ class DefaultLayout extends Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header className="basic-layout__header">
-              {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                className: 'trigger',
-                onClick: this.toggle,
-              })}
-            </Header>
+            <Header className="basic-layout__header">{this.triggerIcon()}</Header>
             <Content className="basic-layout__content">
               <div className="basic-layout__content--children">{children}</div>
               <Footer className="basic-layout__footer">Ant Design ©2018 Created by Ant UED</Footer>
@@ -71,4 +63,4 @@ class DefaultLayout extends Component {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps)(DefaultLayout);
+export default connect(mapStateToProps, settingActions)(DefaultLayout);

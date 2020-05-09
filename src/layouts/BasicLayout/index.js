@@ -2,29 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '@/styles/layout-styles/basic-layout.less';
 import { Layout, Menu } from 'antd';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons';
-import settingActions from '@/store/actions/setting';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import LayoutHead from '../components/LayoutHead';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 class DefaultLayout extends Component {
-  toggle = () => {
-    const { collapsed } = this.props.setting;
-    this.props.changeMenuCollapsed(!collapsed);
-  };
-
-  triggerIcon = () => {
-    const { collapsed } = this.props.setting;
-    const Comp = collapsed ? MenuUnfoldOutlined : MenuFoldOutlined;
-    return <Comp onClick={this.toggle} />;
-  };
-
   render() {
     const { children, setting } = this.props;
     const { collapsed } = setting;
@@ -49,7 +32,7 @@ class DefaultLayout extends Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header className="basic-layout__header">{this.triggerIcon()}</Header>
+            <LayoutHead />
             <Content className="basic-layout__content">
               <div className="basic-layout__content--children">{children}</div>
               <Footer className="basic-layout__footer">Ant Design ©2018 Created by Ant UED</Footer>
@@ -63,4 +46,4 @@ class DefaultLayout extends Component {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, settingActions)(DefaultLayout);
+export default connect(mapStateToProps)(DefaultLayout);

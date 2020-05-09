@@ -8,7 +8,6 @@ const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const WebpackBar = require('webpackbar');
@@ -174,12 +173,6 @@ const baseConfig = {
           files: manifestFiles,
           entrypoints: entrypointFiles,
         };
-      },
-    }),
-    // 加速编译
-   new HardSourceWebpackPlugin({
-      info: {
-        level: 'warn'
       },
     }),
     // 进度条

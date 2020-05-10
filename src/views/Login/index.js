@@ -6,6 +6,7 @@ import '@/styles/views/login.less';
 export default class Login extends Component {
   onFinish = (values) => {
     console.log(values);
+    this.props.history.push('/');
   };
 
   render() {
@@ -13,7 +14,7 @@ export default class Login extends Component {
       <div className="login">
         <div className="login__header">登录</div>
         <div className="login__main">
-          <Form className="login-form" onFinish={this.onFinish}>
+          <Form className="login-form" size="large" onFinish={this.onFinish}>
             <Form.Item
               name="username"
               rules={[

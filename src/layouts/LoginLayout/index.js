@@ -1,11 +1,10 @@
 import React from 'react';
+import '@/styles/layout-styles/login-layout';
 
 const LoginLayout = (prop) => {
   return (
     <div className="login-layout">
-      <div>login</div>
-      {prop.children}
-      <div>footer</div>
+      <div className="login-layout__wrapper">{prop.children}</div>
     </div>
   );
 };

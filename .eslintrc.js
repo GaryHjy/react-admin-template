@@ -31,7 +31,7 @@ module.exports = {
     "no-console": 0, //不禁用console
     "no-debugger": 2, //禁用debugger
     "no-var": 0, //对var警告
-    "func-names": "as-needed",
+    "func-names": "off",
     "semi": 0, //不强制使用分号
     "import/no-unresolved": [0, { commonjs: true, amd: true }], // 关闭 确保导入的模块可以按照标准节点要求解析为本地文件系统上的模块
     "no-irregular-whitespace": 0, //不规则的空白不允许

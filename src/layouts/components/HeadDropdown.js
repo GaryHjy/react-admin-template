@@ -4,7 +4,7 @@ import { UserOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons
 import '@/styles/layout-styles/head-dropdown.less';
 
 class HeadDropdown extends Component {
-  onMenuClick = (event) => {
+  onMenuClick = event => {
     const { key } = event;
 
     console.log(key);

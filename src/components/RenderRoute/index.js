@@ -7,7 +7,7 @@ class RenderRoute extends Component {
   render() {
     return (
       <>
-        {routes.map((item) => {
+        {routes.map(item => {
           const Layout = item.layout || BasicLayout;
           return (
             <Route

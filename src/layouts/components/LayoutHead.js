@@ -30,6 +30,6 @@ class LayoutHead extends Component {
   }
 }
 
-const mapStateToProps = (state) => state.setting;
+const mapStateToProps = state => state.setting;
 
 export default connect(mapStateToProps, settingActions)(LayoutHead);

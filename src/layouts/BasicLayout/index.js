@@ -44,6 +44,6 @@ class DefaultLayout extends Component {
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(DefaultLayout);

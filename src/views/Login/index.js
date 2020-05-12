@@ -17,6 +17,9 @@ class Login extends Component {
     this.setState({ loading: true });
     try {
       await this.props.loginByUserName(form);
+      setTimeout(() => {
+        this.props.history.push('/');
+      });
     } catch (e) {
       console.log(e);
     } finally {

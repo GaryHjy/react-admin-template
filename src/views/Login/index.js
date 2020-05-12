@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '@/styles/views/login.less';
-import { loginByUserName } from '@/services/api/user';
+import { connect } from 'react-redux';
+import actions from '@/store/actions/user';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -12,20 +13,15 @@ export default class Login extends Component {
     };
   }
 
-  onFinish = form => {
+  onFinish = async form => {
     this.setState({ loading: true });
-    loginByUserName(form)
-      .then(res => {
-        console.log(res.data);
-        message.success('登录成功');
-        setTimeout(() => {
-          this.props.history.push('/');
-        });
-      })
-      .finally(() => {
-        this.setState({ loading: false });
-      })
-      .catch(e => console.log(e));
+    try {
+      await this.props.loginByUserName(form);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.setState({ loading: false });
+    }
   };
 
   render() {
@@ -66,3 +62,7 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => state.user;
+
+export default connect(mapStateToProps, actions)(Login);

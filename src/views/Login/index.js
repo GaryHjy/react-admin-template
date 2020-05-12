@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '@/styles/views/login.less';
 import { connect } from 'react-redux';
@@ -17,6 +17,7 @@ class Login extends Component {
     this.setState({ loading: true });
     try {
       await this.props.loginByUserName(form);
+      message.success('登录成功');
       setTimeout(() => {
         this.props.history.push('/');
       });

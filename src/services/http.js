@@ -1,14 +1,12 @@
 import axios from 'axios';
+import { message } from 'antd';
 
 function axiosExtra(http) {
-  const newMethods = {};
-  ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch'].forEach(method => {
-    newMethods[`$${method}`] = function (...args) {
-      const context = this;
-      return context[method].apply(this, args).then(res => res && res.data);
+  for (const method of ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch']) {
+    http[`$${method}`] = function () {
+      return this[method].apply(this, arguments).then(res => res && res.data);
     };
-  });
-  Object.assign(http, newMethods);
+  }
 }
 
 const instance = axios.create({
@@ -40,28 +38,23 @@ instance.interceptors.response.use(
       return Promise.reject(data);
     }
 
-    if (data.code >= 500) {
-      // Message.error({
-      //   message: data.msg || '系统错误，请稍后再试...',
-      // });
+    if (data.code >= 400) {
+      message.error(data.message);
       return Promise.reject(data);
     }
     return res;
   },
   error => {
-    const { status, data } = error.response;
+    const { status } = error.response;
     if (status && status === 403) {
       // Message.error({
       //   message: '当前操作无权限',
       // });
       return Promise.reject(error);
     }
-    if (status && status >= 400) {
-      // Message.error({
-      //   message: data.msg || '系统错误，请稍后再试...',
-      // });
-    }
-    console.log(data);
+    // if (status && status >= 400) {
+    //   message.error(data.message);
+    // }
     return Promise.reject(error);
   },
 );

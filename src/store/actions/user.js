@@ -1,5 +1,5 @@
 import { loginByUserName } from '@/services/api/user';
-import { push } from 'connected-react-router';
+import * as TYPES from '../actionTypes';
 
 export default {
   /**
@@ -7,14 +7,9 @@ export default {
    * @param {*} values 登录表单
    */
   loginByUserName(values) {
-    return async dispatch => {
-      try {
-        const { data } = await loginByUserName(values);
-        console.log(data);
-        dispatch(push('/'));
-      } catch (error) {
-        console.log(error);
-      }
+    return {
+      type: TYPES.UPDATE_USER_INFO,
+      payload: loginByUserName(values),
     };
   },
 };

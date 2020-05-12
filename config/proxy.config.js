@@ -1,10 +1,5 @@
 const apiServer = process.env.API_SERVER;
 
 module.exports = {
-  '/api': {
-    target: apiServer,
-    pathRewrite: { 
-      '^/api': '' 
-    }
-  }
+  '/blog-admin-center': apiServer
 }

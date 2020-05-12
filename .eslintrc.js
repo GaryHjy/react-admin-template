@@ -33,6 +33,10 @@ module.exports = {
     "no-var": 0, //对var警告
     "func-names": "off",
     "prefer-rest-params": "off",
+    "no-restricted-syntax": "off",
+    "prefer-spread": "off",
+    "no-shadow": "off",
+    "no-param-reassign": "off",
     "semi": 0, //不强制使用分号
     "import/no-unresolved": [0, { commonjs: true, amd: true }], // 关闭 确保导入的模块可以按照标准节点要求解析为本地文件系统上的模块
     "no-irregular-whitespace": 0, //不规则的空白不允许

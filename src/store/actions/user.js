@@ -1,5 +1,5 @@
 import { loginByUserName } from '@/services/api/user';
-import * as TYPES from '../actionTypes';
+import { UPDATE_USER_INFO } from '../actionTypes';
 
 export default {
   /**
@@ -8,7 +8,7 @@ export default {
    */
   loginByUserName(values) {
     return {
-      type: TYPES.UPDATE_USER_INFO,
+      type: UPDATE_USER_INFO,
       payload: loginByUserName(values),
     };
   },

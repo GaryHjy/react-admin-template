@@ -42,7 +42,8 @@ class Login extends Component {
                   required: true,
                   message: '请输入用户名',
                 },
-              ]}>
+              ]}
+            >
               <Input prefix={<UserOutlined />} allowClear placeholder="用户名" />
             </Form.Item>
             <Form.Item
@@ -52,7 +53,8 @@ class Login extends Component {
                   required: true,
                   message: '请输入密码',
                 },
-              ]}>
+              ]}
+            >
               <Input prefix={<LockOutlined />} type="password" allowClear placeholder="密码" />
             </Form.Item>
             <Form.Item>

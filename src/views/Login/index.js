@@ -14,16 +14,18 @@ class Login extends Component {
   }
 
   onFinish = async form => {
+    // 如果在loading证明在请求中，避免回车重复发起请求
+    if (this.state.loading) return;
     this.setState({ loading: true });
     try {
       await this.props.loginByUserName(form);
+      const { accessToken } = this.props.user;
+      // 将accessToken存入sessionStorage
+      sessionStorage.setItem('accessToken', accessToken);
       message.success('登录成功');
-      setTimeout(() => {
-        this.props.history.push('/');
-      });
-    } catch (e) {
-      console.log(e);
-    } finally {
+      this.props.history.push('/');
+    } catch {
+      // 发生错误取消loading
       this.setState({ loading: false });
     }
   };

@@ -1,9 +1,9 @@
-import * as TYPES from '../actionTypes';
+import { CHANGE_MENU_COLLAPSED } from '../actionTypes';
 
 export default {
   changeMenuCollapsed(payload) {
     return {
-      type: TYPES.CHANGE_MENU_COLLAPSED,
+      type: CHANGE_MENU_COLLAPSED,
       payload,
     };
   },

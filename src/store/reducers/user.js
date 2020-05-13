@@ -8,7 +8,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case UPDATE_USER_INFO:
-      const { data } = action.payload;
+      const data = action.payload;
       return { ...state, accessToken: data.accessToken, user: { ...state.user, ...data } };
     default:
       return state;

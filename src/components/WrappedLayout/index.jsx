@@ -11,10 +11,10 @@ class WrappedLayout extends Component {
   }
 
   render() {
-    const { Layout, Component } = this.props;
+    const { Layout, Component, ...props } = this.props;
     return (
-      <Layout>
-        <Component />
+      <Layout {...props}>
+        <Component {...props} />
       </Layout>
     );
   }

@@ -1,5 +1,4 @@
 import loadable from '@/utils/loadable';
-import LoginLayout from '@/layouts/LoginLayout';
 
 export default [
   {
@@ -10,6 +9,5 @@ export default [
   {
     path: '/login',
     component: loadable(() => import(/* webpackChunkName: 'login' */ '@/views/Login')),
-    layout: LoginLayout,
   },
 ];

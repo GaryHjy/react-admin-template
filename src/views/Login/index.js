@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '@/styles/views/login.less';
 import { connect } from 'react-redux';
 import actions from '@/store/actions/user';
+import LoginLayout from '@/layouts/LoginLayout/index';
 
 class Login extends Component {
   constructor() {
@@ -73,4 +74,8 @@ class Login extends Component {
 
 const mapStateToProps = state => state.user;
 
-export default connect(mapStateToProps, actions)(Login);
+const WrappedComponent = connect(mapStateToProps, actions)(Login);
+
+WrappedComponent.Layout = LoginLayout;
+
+export default WrappedComponent;

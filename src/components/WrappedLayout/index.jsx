@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserInfoByToken } from '../../services/api/user';
-import { UPDATE_USER_INFO } from '../../store/actionTypes';
+import { getUserInfoByToken } from '@/services/api/user';
+import { UPDATE_USER_INFO } from '@/store/actionTypes';
 
 class WrappedLayout extends Component {
   constructor() {
@@ -17,12 +17,14 @@ class WrappedLayout extends Component {
     }
     // 更新user数据
     if (accessToken && !store.user.accessToken) {
-      getUserInfoByToken(accessToken).then(({ data }) => {
-        this.props.dispatch({
-          type: UPDATE_USER_INFO,
-          payload: data,
-        });
-      });
+      getUserInfoByToken(accessToken)
+        .then(({ data }) => {
+          this.props.dispatch({
+            type: UPDATE_USER_INFO,
+            payload: data,
+          });
+        })
+        .catch(e => console.log(e));
     }
   }
 

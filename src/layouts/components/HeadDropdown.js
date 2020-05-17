@@ -7,40 +7,78 @@ import { push } from 'connected-react-router';
 import { USER_LOGOUT } from '../../store/actionTypes';
 
 class HeadDropdown extends Component {
+  constructor() {
+    super();
+    this.state = {
+      menuList: [
+        {
+          key: 'center',
+          value: '个人中心',
+          icon: <UserOutlined />,
+        },
+        {
+          key: 'setting',
+          value: '个人设置',
+          icon: <SettingOutlined />,
+        },
+        {
+          key: 'logout',
+          value: '退出登录',
+          icon: <LogoutOutlined />,
+        },
+      ],
+    };
+  }
+
+  // 退出登录操作
+  handleLogout = () => {
+    const { dispatch } = this.props;
+    sessionStorage.removeItem('accessToken');
+    // 清空store中用户数据
+    dispatch({
+      type: USER_LOGOUT,
+    });
+    // 跳转登录
+    dispatch(push('/login'));
+  };
+
+  // 跳转个人中心
+  handleJumpCenter = () => {
+    this.props.dispatch(push('/account/center'));
+  };
+
+  // 跳转个人设置
+  handleJumpSetting = () => {
+    this.props.dispatch(push('/account/setting'));
+  };
+
+  // 菜单点击事件
   onMenuClick = event => {
     const { key } = event;
-    const { dispatch } = this.props;
 
-    console.log(key);
+    const methods = {
+      center: this.handleJumpCenter,
+      setting: this.handleJumpSetting,
+      logout: this.handleLogout,
+    };
 
-    if (key === 'logout') {
-      sessionStorage.removeItem('accessToken');
-      // 清空store中用户数据
-      dispatch({
-        type: USER_LOGOUT,
-      });
-      // 跳转登录
-      dispatch(push('/login'));
-    }
+    // 执行
+    if (methods[key]) methods[key]();
   };
 
   render() {
     const { user } = this.props;
+    const { menuList } = this.state;
     const menuHeaderDropdown = (
       <Menu className="menu" selectedKeys={[]} onClick={this.onMenuClick}>
-        <Menu.Item key="center">
-          <UserOutlined />
-          个人中心
-        </Menu.Item>
-        <Menu.Item key="settings">
-          <SettingOutlined />
-          个人设置
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="logout">
-          <LogoutOutlined />
-          退出登录
-        </Menu.Item>
+        {menuList.map(menu => {
+          return (
+            <Menu.Item key={menu.key}>
+              {menu.icon}
+              {menu.value}
+            </Menu.Item>
+          );
+        })}
       </Menu>
     );
 

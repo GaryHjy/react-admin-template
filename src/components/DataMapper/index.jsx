@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Descriptions } from 'antd';
 
 const { item } = Descriptions;
@@ -19,5 +20,17 @@ class DataMapper extends Component {
     );
   }
 }
+
+DataMapper.defaultProps = {
+  title: '',
+  data: {},
+  columns: [],
+};
+
+DataMapper.propTypes = {
+  title: PropTypes.string,
+  data: PropTypes.object,
+  columns: PropTypes.array,
+};
 
 export default DataMapper;

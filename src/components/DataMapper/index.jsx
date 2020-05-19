@@ -12,7 +12,7 @@ class DataMapper extends Component {
         {columns.map((column, index) => {
           return (
             <item key={index} label={column.label}>
-              {data[column.key] || '-'}
+              {column.render ? column.render(data) : data[column.key] || '-'}
             </item>
           );
         })}

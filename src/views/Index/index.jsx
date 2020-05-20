@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Index extends Component {
   render() {
-    return <div>首页</div>;
+    return <div style={{ height: '1000px' }}>首页</div>;
   }
 }
 

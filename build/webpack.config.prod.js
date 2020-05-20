@@ -3,10 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 
 module.exports = {
   mode: 'production',
   devtool: 'none',
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css',
@@ -28,6 +33,20 @@ module.exports = {
         minifyCSS: true,// 压缩js
         minifyURLs: true,
       }
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'react',
+          entry: '//cdn.jsdelivr.net/npm/react@16.13.0/umd/react.production.min.js',
+          global: 'React',
+        },
+        {
+          module: 'react-dom',
+          entry: '//cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js',
+          global: 'ReactDOM',
+        },
+      ]
     }),
     process.env.npm_config_report && new BundleAnalyzerPlugin({
       analyzerMode: 'static',

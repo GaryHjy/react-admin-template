@@ -36,7 +36,9 @@ const getStyleLoaders = function (cssOptions, preProcessor) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: true,
-          // javascriptEnabled: true
+          lessOptions: {
+            javascriptEnabled: true
+          }
         },
       }
     );

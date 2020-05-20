@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Descriptions } from 'antd';
 
-const DescriptionItem = Descriptions.item;
+const { item } = Descriptions;
 
 class DataMapper extends Component {
   render() {
@@ -11,9 +11,9 @@ class DataMapper extends Component {
       <Descriptions title={title}>
         {columns.map((column, index) => {
           return (
-            <DescriptionItem key={index} label={column.label}>
+            <item key={index} label={column.label}>
               {column.render ? column.render(data) : data[column.key] || '-'}
-            </DescriptionItem>
+            </item>
           );
         })}
       </Descriptions>

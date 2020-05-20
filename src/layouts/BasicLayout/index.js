@@ -14,9 +14,9 @@ class DefaultLayout extends Component {
     return (
       <>
         <Layout className="basic-layout">
-          <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
+          <Sider trigger={null} collapsible collapsed={collapsed}>
             <div className="logo" />
-            <Menu mode="inline" defaultSelectedKeys={['1']}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
               <Menu.Item key="1" icon={<UserOutlined />}>
                 nav 1
               </Menu.Item>

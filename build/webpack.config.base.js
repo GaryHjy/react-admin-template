@@ -7,14 +7,10 @@ const devConfig = require('./webpack.config.dev');
 const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const HappyPack = require('happypack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const glob = require('glob');
-
-// 进程数由CPU核数决定
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 const config = {
   'development': devConfig,
@@ -81,7 +77,10 @@ const baseConfig = {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
             exclude: paths.appNodeModules,
-            loader: 'happypack/loader?id=jsx'
+            loader: require.resolve('babel-loader'),
+            options: {
+              cacheDirectory: true,
+            }
           },
           {
             test: cssRegex,
@@ -146,16 +145,8 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // new PurgecssPlugin({
-    //   paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
-    // }),
-    // js多进程构建
-    new HappyPack({
-      id: 'jsx',
-      threadPool: happyThreadPool,
-      loaders: [{
-        loader: 'babel-loader?cacheDirectory=true',
-      }],
+    new PurgecssPlugin({
+      paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
     }),
     // 生成编译结果的资源单
     new ManifestPlugin({

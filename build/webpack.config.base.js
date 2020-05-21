@@ -8,7 +8,7 @@ const prodConfig = require('./webpack.config.prod');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const glob = require('glob');
 
@@ -145,7 +145,7 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new PurgecssPlugin({
+    new PurgeCssPlugin({
       paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
     }),
     // 生成编译结果的资源单

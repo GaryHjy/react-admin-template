@@ -44,7 +44,7 @@ const baseConfig = {
   module: {
     rules: [
       { parser: { requireEnsure: false } },  // 禁用 require.ensure
-      {
+      isDev && {
         test: /\.jsx?$/,
         loader: require.resolve('eslint-loader'),
         options: {
@@ -145,7 +145,7 @@ const baseConfig = {
           }
         ]
       }
-    ]
+    ].filter(Boolean)
   },
   plugins: [
     // 拷贝public下文件,除了.html文件

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-['NODE_ENV', 'API_SERVER', 'PUBLIC_PATH'].forEach(key => {
+['MODE', 'API_SERVER', 'PUBLIC_PATH'].forEach(key => {
   console.log('\n%s\t: %s\n', key, process.env[key])
 })
 

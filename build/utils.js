@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const loaderUtils = require('loader-utils');
 const paths = require('./paths');
-const isDev = paths.appEnv.NODE_ENV === 'development';
+const isDev = paths.appEnv.MODE === 'dev';
 const publicPath = paths.publicPath;
 
 /**

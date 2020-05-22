@@ -4,9 +4,9 @@
   "description": "react-admin-template",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.base.js",
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.base.js",
-    "analyze": "cross-env NODE_ENV=production npm_config_report=true npm run build",
+    "dev": "cross-env MODE=dev webpack-dev-server --config build/webpack.config.base.js",
+    "build": "cross-env MODE=prod webpack --config build/webpack.config.base.js",
+    "analyze": "cross-env MODE=prod npm_config_report=true npm run build",
     "lint": "lint-staged",
     "commit": "npx git-cz"
   },

@@ -12,10 +12,10 @@ const WebpackBar = require('webpackbar');
 const glob = require('glob');
 
 const config = {
-  'development': devConfig,
-  'production': prodConfig
+  'dev': devConfig,
+  'prod': prodConfig
 }
-const isDev = paths.appEnv.NODE_ENV === 'development';
+const isDev = paths.appEnv.MODE === 'dev';
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
@@ -267,4 +267,4 @@ const baseConfig = {
   }
 }
 
-module.exports = merge(baseConfig, config[paths.appEnv.NODE_ENV])
+module.exports = merge(baseConfig, config[paths.appEnv.MODE])

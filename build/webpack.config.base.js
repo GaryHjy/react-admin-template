@@ -1,4 +1,3 @@
-const os = require('os');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const paths = require('./paths');
@@ -79,12 +78,12 @@ const baseConfig = {
             include: paths.appSrc,
             exclude: paths.appNodeModules,
             use: [
-              // {
-              //   loader: 'thread-loader',
-              //   options: {
-              //     workers: 3, // 开启几个 worker 进程来处理打包，默认是 os.cpus().length - 1
-              //   }
-              // },
+              {
+                loader: 'thread-loader',
+                options: {
+                  workers: 3, // 开启几个 worker 进程来处理打包，默认是 os.cpus().length - 1
+                }
+              },
               {
                 loader: require.resolve('babel-loader'),
                 options: {
@@ -145,7 +144,7 @@ const baseConfig = {
           }
         ]
       }
-    ].filter(Boolean)
+    ]
   },
   plugins: [
     // 拷贝public下文件,除了.html文件

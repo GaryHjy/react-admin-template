@@ -10,6 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const glob = require('glob');
 
 const config = {
@@ -155,6 +156,8 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // 模块提供一个中间的缓存
+    new HardSourceWebpackPlugin(),
     new PurgeCssPlugin({
       paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
     }),

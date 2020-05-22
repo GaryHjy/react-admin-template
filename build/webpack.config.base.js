@@ -154,9 +154,9 @@ const baseConfig = {
     }]),
     // 过滤moment中的locale文件，避免打包进去
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // new PurgeCssPlugin({
-    //   paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
-    // }),
+    new PurgeCssPlugin({
+      paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
+    }),
     // 生成编译结果的资源单
     new ManifestPlugin({
       fileName: 'asset-manifest.json',

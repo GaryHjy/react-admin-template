@@ -74,6 +74,7 @@ module.exports = {
     "react/jsx-key": 2, //在数组或迭代器中验证JSX具有key属性
     "react/prefer-stateless-function": ["off"], // 提示使用function函数组件
     "react/jsx-wrap-multilines": ["off"],
+    "react/state-in-constructor": ["off"], // state定义在constructor中
     // "react/jsx-max-props-per-line": [1, { "maximum": 3 }], // 限制JSX中单行上的props的最大数量
     "react/jsx-props-no-spreading": ["off"],
     "react/destructuring-assignment": ["off"],

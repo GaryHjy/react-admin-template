@@ -15,7 +15,7 @@ module.exports = {
     hot: true, // 开启热替换
     watchContentBase: true, // 文件修改之后，会触发一次完整的页面重载
     publicPath: '/', // 上下文path
-    quiet: true, // 初始启动信息之外的任何内容都不会被打印到控制台, webpack的错误或警告在控制台不可见
+    quiet: false, // 初始启动信息之外的任何内容都不会被打印到控制台, webpack的错误或警告在控制台不可见
     watchOptions: {
       ignored: [paths.appNodeModules], // 排除监听一些巨大的文件夹
     },

@@ -45,9 +45,6 @@ const baseConfig = {
       isDev && {
         test: /\.jsx?$/,
         loader: require.resolve('eslint-loader'),
-        options: {
-          cache: true
-        },
         enforce: "pre",
         include: [paths.appSrc], // 指定检查的目录 
         exclude: paths.appNodeModules,

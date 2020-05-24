@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown, Avatar } from 'antd';
 import { UserOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import '@/styles/layout-styles/head-dropdown.less';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { USER_LOGOUT } from '../../store/actionTypes';
+import { USER_LOGOUT } from '@/store/actionTypes';
+import styles from './style.module.less';
 
 class HeadDropdown extends Component {
   constructor() {
@@ -70,7 +70,7 @@ class HeadDropdown extends Component {
     const { user } = this.props;
     const { menuList } = this.state;
     const menuHeaderDropdown = (
-      <Menu className="menu" selectedKeys={[]} onClick={this.onMenuClick}>
+      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         {menuList.map(menu => {
           return (
             <Menu.Item key={menu.key}>
@@ -83,10 +83,15 @@ class HeadDropdown extends Component {
     );
 
     return (
-      <Dropdown className="head-dropdown" overlay={menuHeaderDropdown}>
-        <span className="head-dropdown__content">
-          <Avatar className="head-dropdown__content--avatar" size="small" icon={<UserOutlined />} alt="avatar" />
-          <span className="head-dropdown__content--name">{user.username}</span>
+      <Dropdown className={styles['head-dropdown']} overlay={menuHeaderDropdown}>
+        <span className={styles['head-dropdown__content']}>
+          <Avatar
+            className={styles['head-dropdown__content--avatar']}
+            size="small"
+            icon={<UserOutlined />}
+            alt="avatar"
+          />
+          <span className={styles['head-dropdown__content--name']}>{user.username}</span>
         </span>
       </Dropdown>
     );

@@ -1,10 +1,14 @@
 .layout-head {
-  background: #fff !important;
-  padding: 0px 10px !important;
-  height: 52px !important;
-  line-height: 52px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
   user-select: none;
+
+  // 替换顶部header样式
+  &:global(.ant-layout-header) {
+    background: #fff;
+    padding: 0px 10px;
+    height: 52px;
+    line-height: 52px;
+  }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import '@/styles/layout-styles/login-layout';
+import styles from './style.module.less';
 
 const LoginLayout = prop => {
   return (
-    <div className="login-layout">
-      <div className="login-layout__wrapper">{prop.children}</div>
+    <div className={styles['login-layout']}>
+      <div className={styles['login-layout__wrapper']}>{prop.children}</div>
     </div>
   );
 };

@@ -3,8 +3,8 @@ import { Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import settingActions from '@/store/actions/setting';
-import HeadDropdown from './HeadDropdown';
-import '@/styles/layout-styles/layout-head.less';
+import HeadDropdown from '../HeadDropdown';
+import styles from './style.module.less';
 
 const { Header } = Layout;
 
@@ -22,7 +22,7 @@ class LayoutHead extends Component {
 
   render() {
     return (
-      <Header className="layout-head">
+      <Header className={styles['layout-head']}>
         {this.SwitchButton()}
         <HeadDropdown />
       </Header>

@@ -13,7 +13,7 @@ class DefaultLayout extends Component {
     const { collapsed } = setting;
     return (
       <>
-        <Layout className={styles['styles.basic-layout']}>
+        <Layout className={styles['basic-layout']}>
           <Sider trigger={null} collapsible collapsed={collapsed}>
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>

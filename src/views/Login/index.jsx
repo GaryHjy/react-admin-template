@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import '@/styles/views/login.less';
 import { connect } from 'react-redux';
 import actions from '@/store/actions/user';
 import LoginLayout from '@/layouts/LoginLayout/index';
+import styles from './style.module.less';
 
 class Login extends Component {
   constructor() {
@@ -34,10 +34,10 @@ class Login extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <div className="login">
-        <div className="login__header">登录</div>
-        <div className="login__main">
-          <Form className="login-form" size="large" onFinish={this.onFinish}>
+      <div className={styles.login}>
+        <div className={styles.login__header}>登录</div>
+        <div className={styles.login__main}>
+          <Form className={styles['login-form']} size="large" onFinish={this.onFinish}>
             <Form.Item
               name="username"
               rules={[
@@ -61,7 +61,7 @@ class Login extends Component {
               <Input prefix={<LockOutlined />} type="password" allowClear placeholder="密码" />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
+              <Button type="primary" htmlType="submit" className={styles['login-form-button']} loading={loading}>
                 登录
               </Button>
             </Form.Item>

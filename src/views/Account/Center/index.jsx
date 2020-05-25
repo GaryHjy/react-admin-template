@@ -1,6 +1,6 @@
 import React from 'react';
 import DataMapper from '@/components/DataMapper/index';
-import '@/styles/views/account-center.less';
+import styles from './style.module.less';
 
 function AccountCenter(props) {
   const columns = [
@@ -23,7 +23,7 @@ function AccountCenter(props) {
   ];
   const data = props.store.user.user || {};
   return (
-    <div className="account-center">
+    <div className={styles['account-center']}>
       <DataMapper title="个人中心" columns={columns} data={data} />
     </div>
   );

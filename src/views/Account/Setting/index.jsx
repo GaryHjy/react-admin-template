@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import styles from './style.module.less';
+import BasicForm from './components/basicForm';
 
 class AccountSetting extends Component {
   state = {
@@ -37,6 +38,7 @@ class AccountSetting extends Component {
         </div>
         <div className={styles.setting__body}>
           <h2 className={styles['setting__body--title']}>{curTitle.value}</h2>
+          <BasicForm />
         </div>
       </div>
     );

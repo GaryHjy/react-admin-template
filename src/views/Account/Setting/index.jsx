@@ -25,6 +25,7 @@ class AccountSetting extends Component {
 
   render() {
     const { menuList, active } = this.state;
+    const curTitle = menuList.find(menu => menu.key === active);
     return (
       <div className={styles.setting}>
         <div className={styles.setting__menu}>
@@ -34,7 +35,9 @@ class AccountSetting extends Component {
             ))}
           </Menu>
         </div>
-        <div className={styles.setting__body}>{active}</div>
+        <div className={styles.setting__body}>
+          <h2 className={styles['setting__body--title']}>{curTitle.value}</h2>
+        </div>
       </div>
     );
   }

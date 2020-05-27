@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'antd';
 import styles from './style.module.less';
-import BasicForm from './components/basicForm';
+import BasicForm from './components/BasicForm';
 
 class AccountSetting extends Component {
   state = {

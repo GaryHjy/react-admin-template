@@ -10,10 +10,14 @@ class AccountSetting extends Component {
       {
         key: 'basic',
         value: '基本信息',
+        component: BasicForm,
       },
       {
         key: 'security',
         value: '安全设置',
+        component: () => {
+          return <div>安全设置</div>;
+        },
       },
     ],
   };
@@ -26,7 +30,7 @@ class AccountSetting extends Component {
 
   render() {
     const { menuList, active } = this.state;
-    const curTitle = menuList.find(menu => menu.key === active);
+    const config = menuList.find(menu => menu.key === active);
     return (
       <div className={styles.setting}>
         <div className={styles.setting__menu}>
@@ -37,8 +41,10 @@ class AccountSetting extends Component {
           </Menu>
         </div>
         <div className={styles.setting__body}>
-          <h2 className={styles['setting__body--title']}>{curTitle.value}</h2>
-          <BasicForm />
+          <h2 className={styles['setting__body--title']}>{config.value}</h2>
+          <div className={styles['setting__body--children']}>
+            <config.component />
+          </div>
         </div>
       </div>
     );

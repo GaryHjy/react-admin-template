@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'antd';
 import styles from './style.module.less';
 import BasicForm from './components/BasicForm';
+import SecuritySetting from './components/SecuritySetting';
 
 class AccountSetting extends Component {
   state = {
@@ -15,9 +16,7 @@ class AccountSetting extends Component {
       {
         key: 'security',
         value: '安全设置',
-        component: () => {
-          return <div>安全设置</div>;
-        },
+        component: SecuritySetting,
       },
     ],
   };

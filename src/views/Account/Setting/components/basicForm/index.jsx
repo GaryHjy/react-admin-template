@@ -6,22 +6,12 @@ const BasicForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = values => {
-    console.log('Received values of form: ', values);
+    console.log(values);
   };
 
   return (
     <div className={styles['basic-form']}>
-      <Form
-        form={form}
-        layout="vertical"
-        name="register"
-        onFinish={onFinish}
-        initialValues={{
-          residence: ['zhejiang', 'hangzhou', 'xihu'],
-          prefix: '86',
-        }}
-        scrollToFirstError
-      >
+      <Form form={form} layout="vertical" name="setting" onFinish={onFinish} initialValues={{}} scrollToFirstError>
         <Form.Item
           name="email"
           label="邮箱"
@@ -36,6 +26,10 @@ const BasicForm = () => {
             },
           ]}
         >
+          <Input placeholder="请输入" />
+        </Form.Item>
+
+        <Form.Item name="nickName" label="昵称">
           <Input placeholder="请输入" />
         </Form.Item>
 
